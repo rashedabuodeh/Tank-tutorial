@@ -9,8 +9,13 @@ public class canvas : MonoBehaviour
 {
     public Text scoreText1;
     public Text scoreText2;
+    public Text lvlText;
+    public Text winText;
+
     public int score1 = 0;
     public int score2 = 0;
+    int lvl = 1;
+    public GameObject WIN;
 
 
 
@@ -18,40 +23,63 @@ public class canvas : MonoBehaviour
     {
         scoreText1 = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
         scoreText2 = GameObject.FindGameObjectWithTag("ScoreText2").GetComponent<Text>();
+        lvlText = GameObject.FindGameObjectWithTag("lvl").GetComponent<Text>();
+        winText = GameObject.FindGameObjectWithTag("win").GetComponent<Text>();
 
+        lvlText.text = "Level" + lvl;
         scoreText1.text = ":"+ score1;
         scoreText2.text = ":" + score2;
 
 
 
     }
-    public void pause()
-    {
-        SceneManager.LoadScene("pause", LoadSceneMode.Additive);
-    }
 
     // Update is called once per frame
     public void Update()
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("scene0"));
+        if (SceneManager.GetActiveScene().name != "gamescene")
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("gamescene"));
+        }
 
-        if (!GameObject.FindGameObjectWithTag("tank2"))
-            {
+          if (!GameObject.FindGameObjectWithTag("tank2") && score1 < 3)
+          {
+                lvl += 1;
                 score1 += 1;
                 scoreText1.text = ":" + score1;
-                SceneManager.UnloadSceneAsync("scene0");
-                SceneManager.LoadScene("scene0", LoadSceneMode.Additive);
+          
+                lvlText.text = "Level " + lvl;
+                SceneManager.UnloadSceneAsync("gamescene");
+                SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
+           
+          }
 
-
-        }
-
-        if (!GameObject.FindGameObjectWithTag("tank1"))
+        if (!GameObject.FindGameObjectWithTag("tank1")&& score2<3)
         {
+            lvl += 1;
             score2 += 1;
             scoreText2.text = ":" + score2;
-            SceneManager.UnloadSceneAsync("scene0");
-            SceneManager.LoadScene("scene0", LoadSceneMode.Additive);
+            
+                lvlText.text = "Level " + lvl;
+                SceneManager.UnloadSceneAsync("gamescene");
+                SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
+            
         }
 
+        if (score2 >=3 && !GameObject.FindGameObjectWithTag("winner"))
+        { 
+            winText.text = "Player 2 won " ;
+            Instantiate(WIN,transform);
+        }
+        if (score1 >= 3 && !GameObject.FindGameObjectWithTag("winner"))
+        {
+            winText.text = "Player 1 won " ;
+            Instantiate(WIN, transform);
+
+        }
+
+
     }
+
+
 }

@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class mainmenu : MonoBehaviour
 {
+
+
+
+
     public void PlayButton()
     {
 
         SceneManager.UnloadSceneAsync("menu");
-        SceneManager.LoadScene("scene0");
+        SceneManager.LoadScene("gamescene");
         SceneManager.LoadScene("scores", LoadSceneMode.Additive);
 
     }
