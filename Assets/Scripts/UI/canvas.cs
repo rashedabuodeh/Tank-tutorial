@@ -37,10 +37,12 @@ public class canvas : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+       // if (SceneManager.GetSceneByName("gamescene")!=null)
         if (SceneManager.GetActiveScene().name != "gamescene")
-        {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("gamescene"));
-        }
+            {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("gamescene"));
+            } 
+        
 
           if (!GameObject.FindGameObjectWithTag("tank2") && score1 < 3)
           {
@@ -68,7 +70,7 @@ public class canvas : MonoBehaviour
 
         if (score2 >=3 && !GameObject.FindGameObjectWithTag("winner"))
         {
-            lvl = 3;
+            lvl -=1 ;
             lvlText.text = "Level " + lvl;
 
             winText.text = "Player 2 won " ;
@@ -76,7 +78,7 @@ public class canvas : MonoBehaviour
         }
         if (score1 >= 3 && !GameObject.FindGameObjectWithTag("winner"))
         {
-            lvl = 3;
+            lvl -= 1;
             lvlText.text = "Level " + lvl;
 
             winText.text = "Player 1 won " ;
