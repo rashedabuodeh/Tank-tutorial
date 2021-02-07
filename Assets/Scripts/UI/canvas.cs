@@ -67,12 +67,18 @@ public class canvas : MonoBehaviour
         }
 
         if (score2 >=3 && !GameObject.FindGameObjectWithTag("winner"))
-        { 
+        {
+            lvl = 3;
+            lvlText.text = "Level " + lvl;
+
             winText.text = "Player 2 won " ;
             Instantiate(WIN,transform);
         }
         if (score1 >= 3 && !GameObject.FindGameObjectWithTag("winner"))
         {
+            lvl = 3;
+            lvlText.text = "Level " + lvl;
+
             winText.text = "Player 1 won " ;
             Instantiate(WIN, transform);
 
