@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class pausemenu : MonoBehaviour
+public class Pausemenu : MonoBehaviour
 {
     public void Start()
     {

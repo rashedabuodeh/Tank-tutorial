@@ -15,7 +15,7 @@ public class canvas : MonoBehaviour
     public int score1 = 0;
     public int score2 = 0;
     int lvl = 1;
-    public GameObject WIN;
+    public GameObject WINNING;
 
 
 
@@ -37,7 +37,6 @@ public class canvas : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-       // if (SceneManager.GetSceneByName("gamescene")!=null)
         if (SceneManager.GetActiveScene().name != "gamescene")
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("gamescene"));
@@ -52,7 +51,7 @@ public class canvas : MonoBehaviour
           
                 lvlText.text = "Level " + lvl;
                 SceneManager.UnloadSceneAsync("gamescene");
-                SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
+               SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
            
           }
 
@@ -64,7 +63,7 @@ public class canvas : MonoBehaviour
             
                 lvlText.text = "Level " + lvl;
                 SceneManager.UnloadSceneAsync("gamescene");
-                SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
+               SceneManager.LoadScene("gamescene", LoadSceneMode.Additive);
             
         }
 
@@ -74,7 +73,7 @@ public class canvas : MonoBehaviour
             lvlText.text = "Level " + lvl;
 
             winText.text = "Player 2 won " ;
-            Instantiate(WIN,transform);
+            Instantiate(WINNING, transform);
         }
         if (score1 >= 3 && !GameObject.FindGameObjectWithTag("winner"))
         {
@@ -82,7 +81,7 @@ public class canvas : MonoBehaviour
             lvlText.text = "Level " + lvl;
 
             winText.text = "Player 1 won " ;
-            Instantiate(WIN, transform);
+            Instantiate(WINNING, transform);
 
         }
 

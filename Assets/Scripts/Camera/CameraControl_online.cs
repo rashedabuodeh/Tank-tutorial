@@ -1,0 +1,141 @@
+﻿using UnityEngine;
+
+public class CameraControl_online : MonoBehaviour
+{
+    public float m_DampTime = 0.2f;                 
+    public float m_ScreenEdgeBuffer = 4f;           
+    public float m_MinSize = 6.5f;                  
+    /*[HideInInspector]*/ public Transform[] m_Targets;
+    public Transform spawnpoint1, spawnpoint2;
+
+    private Camera m_Camera;                        
+    private float m_ZoomSpeed;                      
+    private Vector3 m_MoveVelocity;                 
+    private Vector3 m_DesiredPosition;
+   
+
+
+    private void Awake()
+    {
+        m_Camera = GetComponentInChildren<Camera>();
+    
+    }
+
+
+    private void FixedUpdate()
+    {
+       
+        Move();
+        Zoom();
+        if (GameObject.FindWithTag("tank1")!=null)
+        {
+            m_Targets[0] = GameObject.FindWithTag("tank1").transform;
+        }
+        else 
+        { 
+            m_Targets[0] =spawnpoint1 ; 
+        }
+        
+       if (GameObject.FindWithTag("tank2") != null)
+        {
+
+            m_Targets[1] = GameObject.FindWithTag("tank2").transform;
+        }
+        else
+        {
+            m_Targets[1] = spawnpoint2;
+        }
+
+
+    }
+
+
+    private void Move()
+    {
+        FindAveragePosition();
+
+        transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+    }
+   /* private void SetCameraTargets()
+    {
+        // Create a collection of transforms the same size as the number of tanks.
+        Transform[] targets = new Transform[m_Tanks.Length];
+
+        // For each of these transforms...
+        for (int i = 0; i < targets.Length; i++)
+        {
+            // ... set it to the appropriate tank transform.
+            targets[i] = m_Tanks[i].m_Instance.transform;
+        }
+
+        // These are the targets the camera should follow.
+        m_CameraControl.m_Targets = targets;
+    }*/
+
+    private void FindAveragePosition()
+    {
+        Vector3 averagePos = new Vector3();
+        int numTargets = 0;
+
+        for (int i = 0; i < m_Targets.Length; i++)
+        {
+            if (!m_Targets[i].gameObject.activeSelf)
+                continue;
+
+            averagePos += m_Targets[i].position;
+            numTargets++;
+        }
+
+        if (numTargets > 0)
+            averagePos /= numTargets;
+
+        averagePos.y = transform.position.y;
+
+        m_DesiredPosition = averagePos;
+    }
+
+
+    private void Zoom()
+    {
+        float requiredSize = FindRequiredSize();
+        m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, requiredSize, ref m_ZoomSpeed, m_DampTime);
+    }
+
+
+    private float FindRequiredSize()
+    {
+        Vector3 desiredLocalPos = transform.InverseTransformPoint(m_DesiredPosition);
+
+        float size = 0f;
+
+        for (int i = 0; i < m_Targets.Length; i++)
+        {
+            if (!m_Targets[i].gameObject.activeSelf)
+                continue;
+
+            Vector3 targetLocalPos = transform.InverseTransformPoint(m_Targets[i].position);
+
+            Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
+
+            size = Mathf.Max (size, Mathf.Abs (desiredPosToTarget.y));
+
+            size = Mathf.Max (size, Mathf.Abs (desiredPosToTarget.x) / m_Camera.aspect);
+        }
+        
+        size += m_ScreenEdgeBuffer;
+
+        size = Mathf.Max(size, m_MinSize);
+
+        return size;
+    }
+
+
+    public void SetStartPositionAndSize()
+    {
+        FindAveragePosition();
+
+        transform.position = m_DesiredPosition;
+
+        m_Camera.orthographicSize = FindRequiredSize();
+    }
+}

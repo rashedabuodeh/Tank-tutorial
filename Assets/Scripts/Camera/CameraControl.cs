@@ -17,11 +17,13 @@ public class CameraControl : MonoBehaviour
     private void Awake()
     {
         m_Camera = GetComponentInChildren<Camera>();
+    
     }
 
 
     private void FixedUpdate()
     {
+       
         Move();
         Zoom();
     }
@@ -33,7 +35,21 @@ public class CameraControl : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
     }
+   /* private void SetCameraTargets()
+    {
+        // Create a collection of transforms the same size as the number of tanks.
+        Transform[] targets = new Transform[m_Tanks.Length];
 
+        // For each of these transforms...
+        for (int i = 0; i < targets.Length; i++)
+        {
+            // ... set it to the appropriate tank transform.
+            targets[i] = m_Tanks[i].m_Instance.transform;
+        }
+
+        // These are the targets the camera should follow.
+        m_CameraControl.m_Targets = targets;
+    }*/
 
     private void FindAveragePosition()
     {
