@@ -9,19 +9,16 @@ public class winningmenu : MonoBehaviour
 
     public void Start()
     {
-        Time.timeScale = 0;
 
     }
 
 
     public void playButton()
     {
-        Time.timeScale = 1;
         gameObject.SetActive(false);
-        SceneManager.UnloadSceneAsync("gamescene");
-        SceneManager.UnloadSceneAsync("scores");
-
+       
         SceneManager.LoadScene("gamescene");
+        
         SceneManager.LoadScene("scores",LoadSceneMode.Additive);
 
 

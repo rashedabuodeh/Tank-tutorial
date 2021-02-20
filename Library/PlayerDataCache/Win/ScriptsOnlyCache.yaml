@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraControl
     - CameraControl_online
+    - Canvas_online
     - Launcher_tank
     - Manager_tank
     - Pausemenu
@@ -17,7 +18,6 @@ ScriptsOnlyBuild:
     - UIDirectionControl
     - buttoncolor
     - canvas
-    - canvas_online
     - mainmenu
     - winningmenu
     PhotonUnityNetworking.Demos.dll:
@@ -125,9 +125,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2982}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3220}
     - Class: 114
-      Script: {instanceID: 4354}
+      Script: {instanceID: 4356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -216,27 +216,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2786}
     - Class: 114
-      Script: {instanceID: 2814}
-    - Class: 114
       Script: {instanceID: 2976}
     - Class: 114
       Script: {instanceID: 2982}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3636}
+      Script: {instanceID: 3638}
     - Class: 114
-      Script: {instanceID: 3672}
+      Script: {instanceID: 3674}
     - Class: 114
-      Script: {instanceID: 3826}
+      Script: {instanceID: 3828}
     - Class: 114
-      Script: {instanceID: 4030}
+      Script: {instanceID: 4032}
     - Class: 114
-      Script: {instanceID: 4056}
+      Script: {instanceID: 4058}
     - Class: 114
-      Script: {instanceID: 4274}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 4418}
+      Script: {instanceID: 4420}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -347,29 +345,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2984}
     - Class: 114
-      Script: {instanceID: 3526}
+      Script: {instanceID: 3528}
     - Class: 114
-      Script: {instanceID: 3538}
+      Script: {instanceID: 3540}
     - Class: 114
-      Script: {instanceID: 3636}
+      Script: {instanceID: 3638}
     - Class: 114
-      Script: {instanceID: 3672}
+      Script: {instanceID: 3674}
     - Class: 114
-      Script: {instanceID: 3842}
+      Script: {instanceID: 3844}
     - Class: 114
-      Script: {instanceID: 3846}
+      Script: {instanceID: 3848}
     - Class: 114
-      Script: {instanceID: 4010}
+      Script: {instanceID: 4012}
     - Class: 114
-      Script: {instanceID: 4056}
+      Script: {instanceID: 4058}
     - Class: 114
-      Script: {instanceID: 4274}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 4418}
+      Script: {instanceID: 4420}
     - Class: 114
-      Script: {instanceID: 4566}
+      Script: {instanceID: 4568}
     - Class: 114
-      Script: {instanceID: 4870}
+      Script: {instanceID: 4872}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -424,13 +422,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2814}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3672}
+      Script: {instanceID: 3674}
     - Class: 114
-      Script: {instanceID: 4274}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 4290}
+      Script: {instanceID: 4292}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -471,13 +469,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2786}
     - Class: 114
-      Script: {instanceID: 2814}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3674}
     - Class: 114
-      Script: {instanceID: 3672}
-    - Class: 114
-      Script: {instanceID: 4274}
+      Script: {instanceID: 4276}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -917,10 +913,10 @@ ScriptsOnlyBuild:
     className: EnumerableTestState
   - hash:
       serializedVersion: 2
-      Hash: eb3ea19d94b9424c44ab74717d21e0f6
+      Hash: 680704c3b96aa0be07ea8eff87826914
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: canvas_online
+    className: Canvas_online
   - hash:
       serializedVersion: 2
       Hash: d281112591225dd0d60e3116b1c27de6
@@ -989,7 +985,7 @@ ScriptsOnlyBuild:
     className: CountdownTimer
   - hash:
       serializedVersion: 2
-      Hash: f87d547351b6c304deccaa9d8efa3be0
+      Hash: 649b80feff4ab1e160cd6ab384d33cd5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TankHealth_online
@@ -1577,7 +1573,7 @@ ScriptsOnlyBuild:
     className: FriendItem
   - hash:
       serializedVersion: 2
-      Hash: 42053bc8fadd67c80865bf660dcd05f2
+      Hash: 98bef843525ff7498473cfe2534c8db9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Manager_tank

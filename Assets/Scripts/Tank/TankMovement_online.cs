@@ -16,8 +16,6 @@ public class TankMovement_online : MonoBehaviourPun, IPunObservable
 
     private Vector3 smoothMove;
 
-
-
     private string m_MovementAxisName;     
     private string m_TurnAxisName;         
     private Rigidbody m_Rigidbody;
@@ -55,8 +53,9 @@ public class TankMovement_online : MonoBehaviourPun, IPunObservable
         m_TurnAxisName = "Horizontal" + m_PlayerNumber;
 
         m_OriginalPitch = m_MovementAudio.pitch;
+
     }
-    
+
 
     private void Update()
     {

@@ -6,105 +6,71 @@ using Photon.Realtime;
 using System;
 using UnityEngine.SceneManagement;
 
-public class Manager_tank : MonoBehaviour 
+public  class Manager_tank : MonoBehaviour//Pun, IPunObservable
 {
+    // public List<GameObject> players = new List<GameObject>();
+    public Transform[] Spawns;
 
 
-    public GameObject playerPrefab;
-    public GameObject playerPrefab2;
-   // canvas_online c;
-    //PhotonView PV1, PV2;
-    // int ID1, ID2;
+    //public GameObject[] players ;
+    public GameObject playerPrefab ;
+    public GameObject playerPrefab2 ;
+    public GameObject player1,player2 ;
 
-
-
-
+    public bool repeat1, flag, repeat2;//, START=false;
 
 
     void Start()
     {
+        PhotonNetwork.SendRate = 20;
+        PhotonNetwork.SerializationRate = 15;
 
         if (PhotonNetwork.IsMasterClient == true)
         {
-            if (!GameObject.FindGameObjectWithTag("tank1")&& !GameObject.FindGameObjectWithTag("tank2"))
-            {
-
-                PhotonNetwork.Instantiate(playerPrefab.name, playerPrefab.transform.position, playerPrefab.transform.rotation);
-               // ID1 = GetComponent<PhotonView>().ViewID;
-
-                Debug.Log("Setting master to blue tank");
-               // Debug.Log(ID1);
-
-
-
-
-            }
-
+            player1=PhotonNetwork.Instantiate(playerPrefab.name, playerPrefab.transform.position, playerPrefab.transform.rotation);
+            Debug.Log("Setting master to blue tank");
         }
 
         if (PhotonNetwork.IsMasterClient == false)
         {
-            if (!GameObject.FindGameObjectWithTag("tank2"))
-            {
-
-                PhotonNetwork.Instantiate(playerPrefab2.name, playerPrefab2.transform.position, playerPrefab2.transform.rotation);
-
-               // ID2 = GetComponent<PhotonView>().ViewID;
-
-                Debug.Log("Setting NONmaster to red tank");
-               // Debug.Log(ID2);
-
-
-            }
-        }
-
-       
+            player2=PhotonNetwork.Instantiate(playerPrefab2.name, playerPrefab2.transform.position, playerPrefab2.transform.rotation);
+            Debug.Log("Setting NONmaster to red tank");
+        }      
     }
 
-
-    private void Update()
+   private void Update()
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            if (GameObject.FindGameObjectWithTag("tank1")==null && GameObject.FindGameObjectWithTag("tank2")!=null)
+            if (flag )
             {
-
-                Debug.Log("Setting master to blue tank");
-                PhotonNetwork.Instantiate(playerPrefab.name, playerPrefab.transform.position, playerPrefab.transform.rotation);
-                // ID2 = GetComponent<PhotonView>().ViewID;
-                
-
-
+                //PhotonNetwork.LocalPlayer.SetCustomProperties()
+               player1.SetActive(false);
+               player1.SetActive(true);
+               player1.transform.position = Spawns[0].position;
+               player1.transform.rotation = Spawns[0].rotation;
+               flag = false;
             }
-
 
         }
-
         if (PhotonNetwork.IsMasterClient == false)
         {
-            if (GameObject.FindGameObjectWithTag("tank2")==null)
+            if (flag)
             {
-
-                Debug.Log("Setting NONmaster to red tank");
-                PhotonNetwork.Instantiate(playerPrefab2.name, playerPrefab2.transform.position, playerPrefab2.transform.rotation);
-                //  ID1 = GetComponent<PhotonView>().ViewID;
-           
+                player2.SetActive(false);
+                player2.SetActive(true);
+                player2.transform.position = Spawns[1].position;
+                player2.transform.rotation = Spawns[1].rotation;
+                flag = false;
             }
+
         }
     }
 
+    public void Rest(Transform T , int i)
+    {
+       T.position = Spawns[i].position;
+       T.rotation = Spawns[i].rotation;
 
-
-
+    }
 }
-/*  if (m_PlayerNumber==2  && photonView.IsMine) 
-      {
-          c.score1 += 1;
-          c.lvl += 1;
-      }
-      if (m_PlayerNumber == 1 && photonView.IsMine)
-      {
-          c.score2 += 1;
-          c.lvl += 1;
-
-      }*/

@@ -117,17 +117,17 @@ public class TankShooting_online : MonoBehaviourPun, IPunObservable
     {
         if (stream.IsWriting)
         {
-            //if (shellprefab != null)
-            
+            if (shellprefab != null)
+            {
                 stream.SendNext(shellprefab.transform.position);
-            
+            }
         }
         else if (stream.IsReading)
         {
-           // if (shellprefab != null)
-            
+            if (shellprefab != null)
+            {
                 firetransform2 = (Vector3)stream.ReceiveNext();
-            
+            }
         }
     }
 }

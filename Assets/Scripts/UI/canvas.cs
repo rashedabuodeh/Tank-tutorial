@@ -38,9 +38,12 @@ public class canvas : MonoBehaviour
     public void Update()
     {
         if (SceneManager.GetActiveScene().name != "gamescene")
+        {
+            if (SceneManager.GetSceneByName("gamescene").isLoaded)
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("gamescene"));
-            } 
+            }
+        }
         
 
           if (!GameObject.FindGameObjectWithTag("tank2") && score1 < 3)

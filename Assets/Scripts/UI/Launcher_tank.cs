@@ -13,11 +13,10 @@ public class Launcher_tank : MonoBehaviourPunCallbacks {
 
     public GameObject disconnectedScreen;
 
-
     public InputField createRoomTF;
     public InputField joinRoomTF;
 
-   
+
     public void OnClick_ConnectBtn()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -54,15 +53,19 @@ public class Launcher_tank : MonoBehaviourPunCallbacks {
     }
     public void OnClick_CreateRoom()
     {
-        PhotonNetwork.CreateRoom(createRoomTF.text, new RoomOptions { MaxPlayers = 4 }, null);
+        RoomOptions Options = new RoomOptions();
+        Options.BroadcastPropsChangeToAll = true;
+        Options.PublishUserId = true;
+        Options.MaxPlayers = 2;
+        PhotonNetwork.CreateRoom(createRoomTF.text, Options, null);
 
     }
 
     public override void OnJoinedRoom()
     {
-        print("Room Joined Sucess");
+        print("Room Joined Success");
         PhotonNetwork.LoadLevel(1);
-        //PhotonNetwork.
+
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
